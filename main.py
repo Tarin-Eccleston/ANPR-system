@@ -23,19 +23,23 @@ def main():
 
     while True:
         # collect image
-        image = cv2.imread(i + ".png")
+        image = cv2.imread("/examples/" str(i) + ".png")
         rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         i = i + 1
 
-        # dnn to detect car and model/make/colour
+        # Todo: dnn to detect car and model/make/colour
 
         # image process
+    	rectKern = cv2.getStructuringElement(cv2.MORPH_RECT, (13, 5))
+		blackhat = cv2.morphologyEx(gray, cv2.MORPH_BLACKHAT, rectKern)
+		self.debug_imshow("Blackhat", blackhat)
 
         # put into OCR
+        vehicle = vehicle(i, '', '', '', '')
 
-        # verify plate with model/make
+        # Todo: verify plate with model/make
 
-        # append to databese
+        # Todo: append to databese
 
         if i > 7:
             break
