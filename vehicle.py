@@ -5,14 +5,14 @@ import sqlite3
 from sqlite3.dbapi2 import register_adapter
 
 class Car:
-    def __init__(self, id, number_plate, model, make, colour, country):
+    def __init__(self, id, number_plate, model, make, colour, country, verified=False):
         self.id = id
         self.number_plate = number_plate
         self.model = model
         self.make = make
         self.colour = colour
         self.country = country
-        self.verified = False
+        self.verified = verified
         
     def verificationResult(self, flag):
         self.verified = flag
