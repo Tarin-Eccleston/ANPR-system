@@ -10,11 +10,15 @@ from sqlite3.dbapi2 import Cursor
 import sqlite3
 
 # CV and Image Processing
-from skimage.segmentation import clear_border
 import pytesseract
 import numpy as np
 import imutils
 import cv2
+
+# deep learning
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+from tensorflow.keras.preprocessing.image import img_to_array
+from tensorflow.keras.models import load_model
 
 # application processes images of vehicles in the examples folder and reads number plates
 
@@ -22,17 +26,20 @@ import cv2
 def main():
     cursor = createDataBase()
     i = 1
+    netPlate = load_model("plate.model")
+    plates = []
 
     while True:
         # collect image
         image = cv2.imread("examples/" + str(i) + ".jpg")
         cv2.imshow("image", image)
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         i = i + 1
 
         # Todo: dnn to detect car and model/make/colour
 
         # Todo: process image for license plate using deep learning
+        plates = netPlate.detect(image)
 
         # Todo: put into OCR
 
