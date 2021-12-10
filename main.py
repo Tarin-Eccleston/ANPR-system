@@ -9,11 +9,10 @@ import os
 from sqlite3.dbapi2 import Cursor
 import sqlite3
 
-from numpy.lib.type_check import imag
-
 # CV and Image Processing
 import pytesseract
 import numpy as np
+from numpy.lib.type_check import imag
 import imutils
 import cv2
 from matplotlib import pyplot as plt
