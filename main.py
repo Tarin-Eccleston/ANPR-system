@@ -92,6 +92,18 @@ def main():
         text = pytesseract.image_to_string(roi, config=options)
 
         # Todo: verify plate with model/make
+        # API_KEY = ???
+        # Account_Key = ???
+
+        # send request with license plate number
+        # response = requests.get('https://test.carjam.co.nz/a/report:create?key={API_KEY}&account_key={Account_Key}&basic=1&plate={plateNumber}')
+
+        # polling every 100 ms to check if report is ready
+        # while response.completed != true
+        #     sleep(0.1)
+
+        # retrieve results 
+        # result = requests.get('https://test.carjam.co.nz/a/report:get&ref={response.ref}')
 
         # Todo: append to databese
 
