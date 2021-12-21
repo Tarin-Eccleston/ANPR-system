@@ -14,6 +14,7 @@ import pytesseract
 import numpy as np
 from numpy.lib.type_check import imag
 import imutils
+import glob
 import cv2
 from matplotlib import pyplot as plt
 
@@ -25,14 +26,15 @@ from object_detection.utils import visualization_utils as viz_utils
 from object_detection.builders import model_builder
 from object_detection.utils import config_util
 
+
 def main():
     cursor = createDataBase()
     i = 1
     plates = []
 
-    while True:
+    for imagePath in glob.glob("examples" + "/*.jpg"):
         # collect image
-        image = cv2.imread("examples/" + str(i) + ".jpg")
+        image = cv2.imread(imagePath)
         image_np = np.array(image)
 
         i = i + 1
@@ -56,7 +58,7 @@ def main():
         # while response.completed != true
         #     sleep(0.1)
 
-        # retrieve results 
+        # retrieve results
         # result = requests.get('https://test.carjam.co.nz/a/report:get&ref={response.ref}')
 
         # Todo: append to databese
@@ -71,6 +73,7 @@ def main():
         if i == 7:
             break
 
+
 def createDataBase():
     # define connection and cursor
     connection = sqlite3.connect('vehicle.db')
@@ -82,6 +85,7 @@ def createDataBase():
     cursor.execute(command)
 
     return cursor
+
 
 def appendVehicle(cursor, number_plate, model, make, colour, country):
 
